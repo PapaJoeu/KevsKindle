@@ -1,7 +1,27 @@
+/*
+ * Kindle Launchpad — styles.css
+ * All presentation styles for the start page.
+ * Designed for e-ink readability: high contrast, no animations,
+ * minimal color, serif + monospace type pairing.
+ *
+ * Sections:
+ *   - Fonts & Reset
+ *   - Variables
+ *   - Body
+ *   - Header
+ *   - Sections
+ *   - Cards
+ *   - Footer
+ *   - Divider
+ *   - Loading & Error States
+ */
+
+/* ── FONTS & RESET ── */
 @import url('https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,600;7..72,700&family=JetBrains+Mono:wght@400&display=swap');
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
+/* ── VARIABLES ── */
 :root {
   --bg: #ffffff;
   --card-bg: #f7f7f7;
@@ -14,6 +34,7 @@
   --radius: 3px;
 }
 
+/* ── BODY ── */
 body {
   font-family: 'Literata', 'Georgia', serif;
   background: var(--bg);
@@ -194,7 +215,7 @@ body {
   font-weight: 600;
 }
 
-/* -- LOADING -- */
+/* ── LOADING ── */
 .loading {
   text-align: center;
   padding: 40px 0;
@@ -203,7 +224,7 @@ body {
   letter-spacing: 0.06em;
 }
 
-/* -- ERROR -- */
+/* ── ERROR ── */
 .error {
   text-align: center;
   padding: 40px 0;

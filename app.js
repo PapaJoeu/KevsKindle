@@ -1,20 +1,32 @@
-// Kindle Launchpad — app.js
-// Fetches config + link data from JSON, renders the page.
-//
-// Potential improvements (not implemented):
-// - localStorage caching: cache JSON so repeat visits render instantly,
-//   then fetch in background to update stale data.
-// - Service worker: full offline support for the page and its data files.
-// - Config-driven theme: move CSS custom properties into config.json
-//   so users can customize colors without editing CSS.
-// - Search/filter: client-side filtering across all cards.
-// - Drag-and-drop reorder: let users rearrange sections/cards,
-//   persist order to localStorage.
+/*
+ * Kindle Launchpad — app.js
+ * Fetches config + link data from JSON, renders the page.
+ * Uses ES5 syntax throughout for Kindle browser compatibility.
+ *
+ * Sections:
+ *   - Device Detection
+ *   - Data Fetching
+ *   - Render Pipeline (render, createDivider, createSection, createCard)
+ *
+ * Potential improvements (not implemented):
+ *   - localStorage caching: cache JSON so repeat visits render instantly,
+ *     then fetch in background to update stale data.
+ *   - Service worker: full offline support for the page and its data files.
+ *   - Config-driven theme: move CSS custom properties into config.json
+ *     so users can customize colors without editing CSS.
+ *   - Search/filter: client-side filtering across all cards.
+ *   - Drag-and-drop reorder: let users rearrange sections/cards,
+ *     persist order to localStorage.
+ */
 
 (function () {
+
+  // ── DEVICE DETECTION ──
+
   var ua = navigator.userAgent || '';
   var isKindle = /Kindle|Silk|KFTT|KFOT|KFJW|KFSA/i.test(ua);
 
+  // ── DATA FETCHING ──
   // Future: could cache fetched JSON in localStorage here
   // and render from cache immediately, then update in background.
 
@@ -35,6 +47,8 @@
       msg.textContent = "Couldn't load links. Try refreshing.";
       content.appendChild(msg);
     });
+
+  // ── RENDER PIPELINE ──
 
   function render(config, links, isKindle) {
     // Update page title and header from config

@@ -1,4 +1,5 @@
 {
+  "_about": "Kindle Launchpad — links.json: All link cards keyed by section. Each entry: url, icon, name, desc, and optional flags array. Edit this file to add, remove, or reorder links.",
   "read": [
     { "url": "https://reabble.com", "icon": "☰", "name": "Reabble", "desc": "RSS reader built for e-ink. Syncs with Inoreader." },
     { "url": "https://en.m.wikipedia.org", "icon": "W", "name": "Wikipedia", "desc": "Mobile encyclopedia. Fast on Kindle browser." },
