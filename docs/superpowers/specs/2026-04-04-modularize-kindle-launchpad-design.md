@@ -47,6 +47,7 @@ KevsKindle/
     "kindle": "⬤ kindle mode",
     "full": "○ full mode"
   },
+  "modeDivider": "Desktop & Mobile Only",
   "sections": [
     {
       "key": "read",
@@ -176,11 +177,11 @@ The hardcoded header text in the shell matches config.json defaults. `app.js` ov
 
 ## styles.css
 
-Direct extraction of the current `<style>` block with one addition:
+Direct extraction of the current `<style>` block with these changes:
 
-- A `.loading` class for the loading state text (styled to match `.footer p` — small, muted, centered)
-
-No other CSS changes. The existing styles are clean and well-structured.
+- **Add:** A `.loading` class for the loading state text (styled to match `.footer p` — small, muted, centered)
+- **Remove:** `.non-kindle { display: none; }` and `body.show-all .non-kindle { display: block; }` — no longer needed since `app.js` controls section visibility by conditionally rendering them rather than hiding via CSS
+- **Simplify:** `.mode-divider` no longer needs `display: none` and the `body.show-all` override — the divider is only inserted into the DOM when it should be visible, so it can default to `display: block` (or just remove the display rules entirely)
 
 ## app.js Logic
 
@@ -209,7 +210,7 @@ IIFE (no globals)
    - For each section in config.sections:
      - If isKindle && !section.kindleVisible → skip
      - If !section.kindleVisible && !dividerInserted:
-       - Insert mode-divider element ("Desktop & Mobile Only")
+       - Insert mode-divider element with text from config.modeDivider
        - dividerInserted = true
      - Create section div with:
        - section-header containing icon span + h2 with section name
