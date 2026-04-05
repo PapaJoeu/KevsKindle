@@ -1,0 +1,5 @@
+# Brainstorming session artifacts
+.superpowers/
+
+# Design docs (specs, plans) — useful locally, not needed on GitHub Pages
+docs/
