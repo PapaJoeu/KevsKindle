@@ -1,0 +1,56 @@
+{
+  "read": [
+    { "url": "https://reabble.com", "icon": "☰", "name": "Reabble", "desc": "RSS reader built for e-ink. Syncs with Inoreader." },
+    { "url": "https://en.m.wikipedia.org", "icon": "W", "name": "Wikipedia", "desc": "Mobile encyclopedia. Fast on Kindle browser." },
+    { "url": "https://www.gutenberg.org", "icon": "📖", "name": "Project Gutenberg", "desc": "70,000+ free public domain ebooks to download." },
+    { "url": "https://standardebooks.org", "icon": "✦", "name": "Standard Ebooks", "desc": "Beautifully formatted open-source classics." },
+    { "url": "https://old.reddit.com/r/kindle", "icon": "○", "name": "r/kindle", "desc": "Old Reddit works on Kindle. Tips, deals, hacks." }
+  ],
+  "play": [
+    { "url": "https://kindleplay.com", "icon": "▦", "name": "KindlePlay", "desc": "Sudoku, Hangman, Minesweeper, Lost PIN." },
+    { "url": "https://www.brainbashers.com", "icon": "◧", "name": "Brainbashers", "desc": "Futoshiki, Kakuro, Slitherlink, and dozens more." },
+    { "url": "https://www.cryptograms.org", "icon": "⌘", "name": "PuzzleBaron", "desc": "Cryptograms, logic puzzles, codewords." },
+    { "url": "https://ink777.com", "icon": "♠", "name": "ink777", "desc": "Blackjack, Wordle, Solitaire, Checkers, Snake." }
+  ],
+  "tools": [
+    { "url": "https://kinstant.com", "icon": "⚡", "name": "Kinstant", "desc": "Fast-loading start page with web shortcuts." },
+    { "url": "https://forecast.weather.gov", "icon": "☁", "name": "Weather.gov", "desc": "Lightweight NOAA forecast. Enter your zip." },
+    { "url": "https://rekindle.ink", "icon": "⊞", "name": "ReKindle", "desc": "To-do, notes, flashcards, habits, Spotify remote." },
+    { "url": "https://mail.google.com/mail/mu", "icon": "✉", "name": "Gmail", "desc": "Mobile Gmail. Read and compose on e-ink." },
+    { "url": "https://lite.duckduckgo.com/lite", "icon": "⌕", "name": "DuckDuckGo Lite", "desc": "Ultra-lightweight search. No clutter, fast loads." },
+    { "url": "http://192.168.1.x:8080", "icon": "⊟", "name": "Calibre Server", "desc": "Edit the URL in this file → your local IP:8080", "flags": ["placeholder"] }
+  ],
+  "send": [
+    { "url": "https://www.pushtokindle.com", "icon": "→", "name": "Push to Kindle", "desc": "One-click article cleanup and delivery." },
+    { "url": "https://www.instapaper.com", "icon": "▤", "name": "Instapaper", "desc": "Save articles, auto-deliver digests to Kindle." },
+    { "url": "https://ktool.io", "icon": "K", "name": "KTool", "desc": "Send articles and newsletters to Kindle." },
+    { "url": "https://any2k.com", "icon": "∀", "name": "Any2K", "desc": "Archive articles, RSS, files with Kindle delivery." },
+    { "url": "https://epub.press", "icon": "⊕", "name": "EpubPress", "desc": "Compile open browser tabs into one ebook." },
+    { "url": "https://p2k.co", "icon": "P", "name": "P2K", "desc": "Pocket to Kindle bridge. 5 free articles/week." },
+    { "url": "https://www.amazon.com/sendtokindle", "icon": "◈", "name": "Send to Kindle", "desc": "Amazon's official browser extension." }
+  ],
+  "ebooks": [
+    { "url": "https://calibre-ebook.com", "icon": "⊟", "name": "Calibre", "desc": "Library management, conversion, metadata, server." },
+    { "url": "https://github.com/noDRM/DeDRM_tools", "icon": "⊗", "name": "DeDRM Plugin", "desc": "Strip DRM from Kindle, Kobo, Adobe ebooks." },
+    { "url": "https://www.mobileread.com/forums/showthread.php?t=291290", "icon": "⊘", "name": "KFX Input", "desc": "Calibre plugin for Amazon's KFX format." },
+    { "url": "https://github.com/janeczku/calibre-web", "icon": "⊞", "name": "Calibre-Web", "desc": "Modern web UI for your Calibre library." },
+    { "url": "https://github.com/crocodilestick/Calibre-Web-Automated", "icon": "⊠", "name": "CWA", "desc": "Calibre-Web + auto-ingest, cover enforcement." }
+  ],
+  "discovery": [
+    { "url": "https://www.bookbub.com", "icon": "★", "name": "BookBub", "desc": "Free daily personalized ebook deal alerts." },
+    { "url": "https://openlibrary.org", "icon": "⌂", "name": "Open Library", "desc": "Borrow ebooks from the Internet Archive." },
+    { "url": "https://www.overdrive.com", "icon": "⊡", "name": "Libby / OverDrive", "desc": "Borrow from your local public library." }
+  ],
+  "automation": [
+    { "url": "https://ifttt.com/search?q=kindle", "icon": "⟳", "name": "IFTTT Kindle", "desc": "Dropbox→Kindle, Pocket→Kindle, RSS→Kindle." },
+    { "url": "https://github.com/cdhigh/KindleEar", "icon": "⟐", "name": "KindleEar", "desc": "Self-hosted RSS aggregator with Kindle push." },
+    { "url": "https://kindle4rss.com", "icon": "⟑", "name": "Kindle4RSS", "desc": "Deliver RSS feeds as ebooks to your Kindle." }
+  ],
+  "modding": [
+    { "url": "https://github.com/koreader/koreader", "icon": "⊳", "name": "KOReader", "desc": "Open-source reader app. Requires jailbreak." },
+    { "url": "https://kindlemodding.org", "icon": "⚙", "name": "KindleModding.org", "desc": "Step-by-step jailbreak guides." },
+    { "url": "https://kindlemodshelf.me", "icon": "▧", "name": "Kindle Mod Shelf", "desc": "Curated directory of tools, games, plugins." },
+    { "url": "https://www.mobileread.com/forums/", "icon": "⊶", "name": "MobileRead", "desc": "The main forum for Kindle modding and ebooks." },
+    { "url": "https://wiki.mobileread.com/wiki/Kindle_Hacks_Information", "icon": "⊷", "name": "MobileRead Wiki", "desc": "Community-maintained Kindle hacking wiki." }
+  ]
+}
