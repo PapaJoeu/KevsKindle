@@ -19,8 +19,8 @@
   // and render from cache immediately, then update in background.
 
   Promise.all([
-    fetch('data/config.json').then(function (r) { return r.json(); }),
-    fetch('data/links.json').then(function (r) { return r.json(); })
+    fetch('data/config.json').then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }),
+    fetch('data/links.json').then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
   ])
     .then(function (results) {
       var config = results[0];
