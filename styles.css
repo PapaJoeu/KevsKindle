@@ -1,0 +1,212 @@
+@import url('https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,600;7..72,700&family=JetBrains+Mono:wght@400&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #ffffff;
+  --card-bg: #f7f7f7;
+  --text: #1a1a1a;
+  --text-muted: #555;
+  --border: #222;
+  --border-light: #ccc;
+  --accent: #333;
+  --card-shadow: 1px 2px 0 #ddd;
+  --radius: 3px;
+}
+
+body {
+  font-family: 'Literata', 'Georgia', serif;
+  background: var(--bg);
+  color: var(--text);
+  padding: 16px;
+  max-width: 800px;
+  margin: 0 auto;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* ── HEADER ── */
+.header {
+  text-align: center;
+  padding: 20px 0 12px;
+  border-bottom: 3px double var(--border);
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  font-size: 1.6em;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.header .subtitle {
+  font-size: 0.75em;
+  color: var(--text-muted);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.device-badge {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 2px 10px;
+  border: 1px solid var(--border);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6em;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ── SECTIONS ── */
+.section {
+  margin-bottom: 24px;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.section-header h2 {
+  font-size: 0.85em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+}
+
+.section-icon {
+  font-size: 1em;
+  line-height: 1;
+}
+
+/* ── CARDS ── */
+.card-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+@media (max-width: 400px) {
+  .card-grid { grid-template-columns: 1fr; }
+}
+
+.card {
+  display: block;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  text-decoration: none;
+  color: var(--text);
+  box-shadow: var(--card-shadow);
+  transition: none;
+  min-height: 70px;
+}
+
+.card:active {
+  background: #e8e3da;
+}
+
+.card-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.card-icon {
+  font-size: 1.2em;
+  line-height: 1;
+  flex-shrink: 0;
+  width: 24px;
+  text-align: center;
+}
+
+.card-name {
+  font-size: 0.85em;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.card-desc {
+  font-size: 0.68em;
+  color: var(--text-muted);
+  line-height: 1.4;
+  margin-top: 2px;
+}
+
+.card.placeholder {
+  border-style: dashed;
+  background: transparent;
+  box-shadow: none;
+}
+
+.card.placeholder .card-desc {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6em;
+}
+
+/* ── FOOTER ── */
+.footer {
+  text-align: center;
+  padding: 16px 0 8px;
+  border-top: 1px solid var(--border-light);
+  margin-top: 12px;
+}
+
+.footer p {
+  font-size: 0.6em;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+}
+
+/* ── DIVIDER ── */
+.mode-divider {
+  text-align: center;
+  margin: 28px 0 20px;
+  position: relative;
+}
+
+.mode-divider::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--border-light);
+}
+
+.mode-divider span {
+  position: relative;
+  background: var(--bg);
+  padding: 0 12px;
+  font-size: 0.65em;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+/* -- LOADING -- */
+.loading {
+  text-align: center;
+  padding: 40px 0;
+  font-size: 0.6em;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+}
+
+/* -- ERROR -- */
+.error {
+  text-align: center;
+  padding: 40px 0;
+  font-size: 0.7em;
+  color: var(--text-muted);
+}
