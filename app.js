@@ -25,15 +25,16 @@
   // ── DEVICE DETECTION ──
 
   var ua = navigator.userAgent || '';
+  // KFTT/KFOT/KFJW/KFSA are Kindle Fire hardware model codes
   var isKindle = /Kindle|Silk|KFTT|KFOT|KFJW|KFSA/i.test(ua);
 
   // ── DATA FETCHING ──
-  // Future: could cache fetched JSON in localStorage here
-  // and render from cache immediately, then update in background.
+  // Future: could cache fetched JSON in localStorage and render from cache immediately.
+  // Note: fetch() won't reject on 4xx/5xx — r.ok check ensures .catch() handles failures.
 
   Promise.all([
-    fetch('data/config.json').then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }),
-    fetch('data/links.json').then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    fetch('data/config.json').then(function (response) { if (!response.ok) throw new Error(response.status); return response.json(); }),
+    fetch('data/links.json').then(function (response) { if (!response.ok) throw new Error(response.status); return response.json(); })
   ])
     .then(function (results) {
       var config = results[0];
@@ -71,6 +72,7 @@
       // On Kindle, skip sections not meant for e-ink
       if (isKindle && !section.kindleVisible) return;
 
+      // Relies on config.sections being ordered: kindle-visible first, desktop-only after
       // Insert the mode divider before the first non-kindle section
       if (!section.kindleVisible && !dividerInserted) {
         content.appendChild(createDivider(config.modeDivider));
@@ -92,10 +94,10 @@
       // Only include sections visible in current mode
       if (isKindle && !section.kindleVisible) return;
 
-      var a = document.createElement('a');
-      a.href = '#section-' + section.key;
-      a.textContent = section.name;
-      nav.appendChild(a);
+      var navLink = document.createElement('a');
+      navLink.href = '#section-' + section.key;
+      navLink.textContent = section.name;
+      nav.appendChild(navLink);
     });
 
     return nav;
@@ -111,10 +113,10 @@
   }
 
   function createSection(section, sectionLinks, siteLabels) {
-    var el = document.createElement('div');
-    el.className = 'section';
+    var sectionEl = document.createElement('div');
+    sectionEl.className = 'section';
     // Anchor target for section nav
-    el.id = 'section-' + section.key;
+    sectionEl.id = 'section-' + section.key;
 
     // Section header with tagline
     var header = document.createElement('div');
@@ -134,8 +136,9 @@
     h2.appendChild(tagline);
     header.appendChild(h2);
 
-    el.appendChild(header);
+    sectionEl.appendChild(header);
 
+    // Assumes all cards in a section either have site fields or none do
     // Check if cards have site fields — determines grouping behavior
     var hasSites = sectionLinks.length > 0 && sectionLinks[0].site;
 
@@ -153,12 +156,12 @@
           var label = document.createElement('div');
           label.className = 'site-label';
           label.textContent = siteLabels[link.site] || link.site;
-          el.appendChild(label);
+          sectionEl.appendChild(label);
 
           // Fresh card grid for this site group
           currentGrid = document.createElement('div');
           currentGrid.className = 'card-grid';
-          el.appendChild(currentGrid);
+          sectionEl.appendChild(currentGrid);
         }
 
         currentGrid.appendChild(createCard(link));
@@ -172,10 +175,10 @@
         grid.appendChild(createCard(link));
       });
 
-      el.appendChild(grid);
+      sectionEl.appendChild(grid);
     }
 
-    return el;
+    return sectionEl;
   }
 
   function createCard(link) {
@@ -184,6 +187,7 @@
     a.href = link.url;
 
     // Apply flags (e.g. placeholder cards get dashed border)
+    // indexOf instead of .includes() — Kindle browser lacks full ES6 Array methods
     if (link.flags && link.flags.indexOf('placeholder') !== -1) {
       a.className += ' placeholder';
     }

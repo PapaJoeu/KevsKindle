@@ -44,6 +44,7 @@ body {
   padding: 16px;
   max-width: 800px;
   margin: 0 auto;
+  /* Prevent Kindle/iOS from auto-scaling text on orientation change */
   -webkit-text-size-adjust: 100%;
 }
 
@@ -164,10 +165,13 @@ body {
   text-decoration: none;
   color: var(--text);
   box-shadow: var(--card-shadow);
+  /* No transitions — CSS animations cause ghosting on e-ink screens */
   transition: none;
+  /* Consistent card height so two-column rows align regardless of desc length */
   min-height: 70px;
 }
 
+/* Warm press-state color — intentionally outside the variable palette */
 .card:active {
   background: #e8e3da;
 }
