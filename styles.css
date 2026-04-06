@@ -32,7 +32,7 @@
   --border: #222;
   --border-light: #ccc;
   --accent: #333;
-  --card-shadow: 1px 2px 0 #ddd;
+  --card-shadow: 1px 2px 0 #bbb;
   --radius: 3px;
 
   /* Font stacks */
@@ -44,7 +44,7 @@
   --text-xs: 0.7em;          /* subtitle, taglines, error */
   --text-xxs: 0.65em;        /* nav links, mode divider */
   --text-micro: 0.6em;       /* badges, site labels, loading */
-  --text-card-desc: 0.68em;  /* card descriptions — unique size */
+  --text-card-desc: 0.7em;    /* card descriptions — merged with --text-xs for e-ink clarity */
 
   /* Spacing — repeated padding/margin/gap values */
   --space-xs: 4px;
@@ -82,7 +82,7 @@ body {
 }
 
 .header h1 {
-  font-size: 1.6em;
+  font-size: 1.3em;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
