@@ -6,7 +6,7 @@
  *
  * Sections:
  *   - Fonts & Reset
- *   - Variables
+ *   - Variables (design tokens)
  *   - Body
  *   - Header
  *   - Section Nav
@@ -25,6 +25,7 @@
 
 /* ── VARIABLES ── */
 :root {
+  /* Colors */
   --bg: #ffffff;
   --card-bg: #f7f7f7;
   --text: #1a1a1a;
@@ -34,11 +35,36 @@
   --accent: #333;
   --card-shadow: 1px 2px 0 #ddd;
   --radius: 3px;
+
+  /* Font stacks */
+  --font-body: 'Literata', 'Georgia', serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Font sizes — named by role, not pixel value */
+  --text-sm: 0.85em;         /* card names, section headers */
+  --text-xs: 0.7em;          /* subtitle, taglines, error */
+  --text-xxs: 0.65em;        /* nav links, mode divider */
+  --text-micro: 0.6em;       /* badges, site labels, loading */
+  --text-card-desc: 0.68em;  /* card descriptions — unique size */
+
+  /* Spacing — repeated padding/margin/gap values */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-lg: 20px;
+  --space-xl: 24px;
+
+  /* Letter spacing — the five patterns used throughout */
+  --tracking-tight: 0.02em;   /* card names, taglines */
+  --tracking-normal: 0.06em;  /* badges, nav, loading */
+  --tracking-wide: 0.1em;     /* section headers */
+  --tracking-wider: 0.12em;   /* subtitle, mode divider */
+  --tracking-widest: 0.15em;  /* site labels */
 }
 
 /* ── BODY ── */
 body {
-  font-family: 'Literata', 'Georgia', serif;
+  font-family: var(--font-body);
   background: var(--bg);
   color: var(--text);
   padding: 16px;
@@ -51,9 +77,9 @@ body {
 /* ── HEADER ── */
 .header {
   text-align: center;
-  padding: 20px 0 12px;
+  padding: var(--space-lg) 0 var(--space-md);
   border-bottom: 3px double var(--border);
-  margin-bottom: 20px;
+  margin-bottom: var(--space-lg);
 }
 
 .header h1 {
@@ -67,18 +93,18 @@ body {
 .header .subtitle {
   font-size: 0.75em;
   color: var(--text-muted);
-  letter-spacing: 0.12em;
+  letter-spacing: var(--tracking-wider);
   text-transform: uppercase;
 }
 
 .device-badge {
   display: inline-block;
-  margin-top: 8px;
+  margin-top: var(--space-sm);
   padding: 2px 10px;
   border: 1px solid var(--border);
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.6em;
-  letter-spacing: 0.06em;
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  letter-spacing: var(--tracking-normal);
   text-transform: uppercase;
 }
 
@@ -88,17 +114,17 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding: 12px 0;
-  margin-bottom: 20px;
+  padding: var(--space-md) 0;
+  margin-bottom: var(--space-lg);
   border-bottom: 1px solid var(--border-light);
 }
 
 /* Individual nav link — margins instead of gap for Kindle browser compat */
 .section-nav a {
-  font-size: 0.65em;
+  font-size: var(--text-xxs);
   text-decoration: none;
   color: var(--text-muted);
-  letter-spacing: 0.06em;
+  letter-spacing: var(--tracking-normal);
   text-transform: uppercase;
   padding: 2px 0;
   margin: 3px 6px;
@@ -110,46 +136,47 @@ body {
 
 /* ── SECTIONS ── */
 .section {
-  margin-bottom: 24px;
+  margin-bottom: var(--space-xl);
 }
 
+/* Margins instead of gap for Kindle browser compat */
 .section-header {
   display: flex;
   align-items: center;
-  gap: 8px;
   margin-bottom: 10px;
   padding-bottom: 6px;
   border-bottom: 1px solid var(--border-light);
 }
 
 .section-header h2 {
-  font-size: 0.85em;
+  font-size: var(--text-sm);
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: var(--tracking-wide);
   color: var(--accent);
 }
 
 .section-icon {
   font-size: 1em;
   line-height: 1;
+  margin-right: var(--space-sm);
 }
 
 /* ── TAGLINES ── */
 /* Deadpan subtitle next to section name — personality without clutter */
 .section-tagline {
-  font-size: 0.7em;
+  font-size: var(--text-xs);
   font-weight: 400;
   color: var(--text-muted);
   text-transform: none;
-  letter-spacing: 0.02em;
+  letter-spacing: var(--tracking-tight);
 }
 
 /* ── CARDS ── */
+/* Margins instead of gap for Kindle browser compat */
 .card-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
 }
 
 @media (max-width: 400px) {
@@ -161,7 +188,7 @@ body {
   background: var(--card-bg);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 12px 14px;
+  padding: var(--space-md) 14px;
   text-decoration: none;
   color: var(--text);
   box-shadow: var(--card-shadow);
@@ -169,6 +196,8 @@ body {
   transition: none;
   /* Consistent card height so two-column rows align regardless of desc length */
   min-height: 70px;
+  /* Margin-based grid spacing — replaces gap for Kindle compat */
+  margin: 5px;
 }
 
 /* Warm press-state color — intentionally outside the variable palette */
@@ -176,11 +205,11 @@ body {
   background: #e8e3da;
 }
 
+/* Margins instead of gap for Kindle browser compat */
 .card-top {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 4px;
+  margin-bottom: var(--space-xs);
 }
 
 .card-icon {
@@ -189,16 +218,17 @@ body {
   flex-shrink: 0;
   width: 24px;
   text-align: center;
+  margin-right: var(--space-sm);
 }
 
 .card-name {
-  font-size: 0.85em;
+  font-size: var(--text-sm);
   font-weight: 700;
-  letter-spacing: 0.02em;
+  letter-spacing: var(--tracking-tight);
 }
 
 .card-desc {
-  font-size: 0.68em;
+  font-size: var(--text-card-desc);
   color: var(--text-muted);
   line-height: 1.4;
   margin-top: 2px;
@@ -211,31 +241,31 @@ body {
 }
 
 .card.placeholder .card-desc {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.6em;
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
 }
 
 /* ── SITE LABELS ── */
 /* Lightweight dividers within a section to group cards by source site */
 .site-label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.6em;
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
   text-transform: uppercase;
-  letter-spacing: 0.15em;
+  letter-spacing: var(--tracking-widest);
   color: var(--text-muted);
-  padding: 4px 0 6px;
+  padding: var(--space-xs) 0 6px;
   margin-top: 2px;
 }
 
 /* Breathing room between site groups — only after a card grid */
 .card-grid + .site-label {
-  margin-top: 12px;
+  margin-top: var(--space-md);
 }
 
 /* ── DIVIDER ── */
 .mode-divider {
   text-align: center;
-  margin: 28px 0 20px;
+  margin: 28px 0 var(--space-lg);
   position: relative;
 }
 
@@ -252,10 +282,10 @@ body {
 .mode-divider span {
   position: relative;
   background: var(--bg);
-  padding: 0 12px;
-  font-size: 0.65em;
+  padding: 0 var(--space-md);
+  font-size: var(--text-xxs);
   text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: var(--tracking-wider);
   color: var(--text-muted);
   font-weight: 600;
 }
@@ -264,15 +294,15 @@ body {
 .loading {
   text-align: center;
   padding: 40px 0;
-  font-size: 0.6em;
+  font-size: var(--text-micro);
   color: var(--text-muted);
-  letter-spacing: 0.06em;
+  letter-spacing: var(--tracking-normal);
 }
 
 /* ── ERROR ── */
 .error {
   text-align: center;
   padding: 40px 0;
-  font-size: 0.7em;
+  font-size: var(--text-xs);
   color: var(--text-muted);
 }
