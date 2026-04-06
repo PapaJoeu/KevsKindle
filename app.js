@@ -10,8 +10,8 @@
  *   - Render Pipeline (render, createNav, createDivider, createSection, createCard)
  *
  * Potential improvements (not implemented):
- *   - localStorage caching: cache JSON so repeat visits render instantly,
- *     then fetch in background to update stale data.
+ *   - localStorage caching: implemented — stale-while-revalidate renders
+ *     from cache instantly, then refreshes in background.
  *   - Service worker: full offline support for the page and its data files.
  *   - Config-driven theme: move CSS custom properties into config.json
  *     so users can customize colors without editing CSS.
@@ -29,9 +29,22 @@
   var isKindle = /Kindle|Silk|KFTT|KFOT|KFJW|KFSA/i.test(ua);
 
   // ── DATA FETCHING ──
-  // Future: could cache fetched JSON in localStorage and render from cache immediately.
-  // Note: fetch() won't reject on 4xx/5xx — r.ok check ensures .catch() handles failures.
+  // Stale-while-revalidate: render from cache instantly, refresh in background.
+  // This eliminates the blank-page wait on Kindle's slow WiFi.
 
+  var CACHE_KEY = 'kevs-kindle-data';
+
+  // Try to render from cache immediately
+  var cached = null;
+  try {
+    cached = JSON.parse(localStorage.getItem(CACHE_KEY));
+  } catch (e) { /* corrupt cache — ignore, will fetch fresh */ }
+
+  if (cached && cached.config && cached.links) {
+    render(cached.config, cached.links, isKindle);
+  }
+
+  // Fetch fresh data in background regardless
   Promise.all([
     fetch('data/config.json').then(function (response) { if (!response.ok) throw new Error(response.status); return response.json(); }),
     fetch('data/links.json').then(function (response) { if (!response.ok) throw new Error(response.status); return response.json(); })
@@ -39,15 +52,24 @@
     .then(function (results) {
       var config = results[0];
       var links = results[1];
-      render(config, links, isKindle);
+      var fresh = JSON.stringify({ config: config, links: links });
+
+      // Only re-render if data actually changed
+      if (fresh !== localStorage.getItem(CACHE_KEY)) {
+        try { localStorage.setItem(CACHE_KEY, fresh); } catch (e) { /* storage full — skip */ }
+        render(config, links, isKindle);
+      }
     })
     .catch(function () {
-      var content = document.getElementById('content');
-      content.innerHTML = '';
-      var msg = document.createElement('div');
-      msg.className = 'error';
-      msg.textContent = "Couldn't load links. Try refreshing.";
-      content.appendChild(msg);
+      // Only show error if we didn't already render from cache
+      if (!cached) {
+        var content = document.getElementById('content');
+        content.innerHTML = '';
+        var msg = document.createElement('div');
+        msg.className = 'error';
+        msg.textContent = "Couldn't load links. Try refreshing.";
+        content.appendChild(msg);
+      }
     });
 
   // ── RENDER PIPELINE ──
