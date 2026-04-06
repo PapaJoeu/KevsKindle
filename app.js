@@ -1,12 +1,12 @@
 /*
- * Kindle Launchpad — app.js
+ * Kev's Kindle — app.js
  * Fetches config + link data from JSON, renders the page.
  * Uses ES5 syntax throughout for Kindle browser compatibility.
  *
  * Sections:
  *   - Device Detection
  *   - Data Fetching
- *   - Render Pipeline (render, createDivider, createSection, createCard)
+ *   - Render Pipeline (render, createNav, createDivider, createSection, createCard)
  *
  * Potential improvements (not implemented):
  *   - localStorage caching: cache JSON so repeat visits render instantly,
@@ -61,6 +61,9 @@
     var content = document.getElementById('content');
     content.innerHTML = '';
 
+    // Build the section nav — inline links for jumping between sections
+    content.appendChild(createNav(config.sections, isKindle));
+
     var dividerInserted = false;
 
     config.sections.forEach(function (section) {
@@ -73,16 +76,28 @@
         dividerInserted = true;
       }
 
-      content.appendChild(createSection(section, links[section.key] || []));
+      content.appendChild(
+        createSection(section, links[section.key] || [], config.siteLabels || {})
+      );
+    });
+  }
+
+  // Build inline nav with anchor links to each visible section
+  function createNav(sections, isKindle) {
+    var nav = document.createElement('nav');
+    nav.className = 'section-nav';
+
+    sections.forEach(function (section) {
+      // Only include sections visible in current mode
+      if (isKindle && !section.kindleVisible) return;
+
+      var a = document.createElement('a');
+      a.href = '#section-' + section.key;
+      a.textContent = section.name;
+      nav.appendChild(a);
     });
 
-    // Footer
-    var footer = document.createElement('div');
-    footer.className = 'footer';
-    var footerP = document.createElement('p');
-    footerP.textContent = config.footer;
-    footer.appendChild(footerP);
-    content.appendChild(footer);
+    return nav;
   }
 
   function createDivider(text) {
@@ -94,11 +109,13 @@
     return div;
   }
 
-  function createSection(section, sectionLinks) {
+  function createSection(section, sectionLinks, siteLabels) {
     var el = document.createElement('div');
     el.className = 'section';
+    // Anchor target for section nav
+    el.id = 'section-' + section.key;
 
-    // Section header
+    // Section header with tagline
     var header = document.createElement('div');
     header.className = 'section-header';
 
@@ -108,20 +125,55 @@
     header.appendChild(icon);
 
     var h2 = document.createElement('h2');
-    h2.textContent = section.name;
+    // Name followed by em-dash and tagline
+    h2.textContent = section.name + ' \u2014 ';
+    var tagline = document.createElement('span');
+    tagline.className = 'section-tagline';
+    tagline.textContent = section.tagline;
+    h2.appendChild(tagline);
     header.appendChild(h2);
 
     el.appendChild(header);
 
-    // Card grid
-    var grid = document.createElement('div');
-    grid.className = 'card-grid';
+    // Check if cards have site fields — determines grouping behavior
+    var hasSites = sectionLinks.length > 0 && sectionLinks[0].site;
 
-    sectionLinks.forEach(function (link) {
-      grid.appendChild(createCard(link));
-    });
+    if (hasSites) {
+      // Group cards by site, render a label + grid per group
+      var currentSite = null;
+      var currentGrid = null;
 
-    el.appendChild(grid);
+      sectionLinks.forEach(function (link) {
+        // New site group — insert label and start a fresh grid
+        if (link.site !== currentSite) {
+          currentSite = link.site;
+
+          // Site label (e.g. "▦ KindlePlay")
+          var label = document.createElement('div');
+          label.className = 'site-label';
+          label.textContent = siteLabels[link.site] || link.site;
+          el.appendChild(label);
+
+          // Fresh card grid for this site group
+          currentGrid = document.createElement('div');
+          currentGrid.className = 'card-grid';
+          el.appendChild(currentGrid);
+        }
+
+        currentGrid.appendChild(createCard(link));
+      });
+    } else {
+      // No site grouping — single card grid (default behavior)
+      var grid = document.createElement('div');
+      grid.className = 'card-grid';
+
+      sectionLinks.forEach(function (link) {
+        grid.appendChild(createCard(link));
+      });
+
+      el.appendChild(grid);
+    }
+
     return el;
   }
 
@@ -130,19 +182,22 @@
     a.className = 'card';
     a.href = link.url;
 
-    // Apply flags
+    // Apply flags (e.g. placeholder cards get dashed border)
     if (link.flags && link.flags.indexOf('placeholder') !== -1) {
       a.className += ' placeholder';
     }
 
-    // Card top row: icon + name
+    // Card top row: icon (if present) + name
     var top = document.createElement('div');
     top.className = 'card-top';
 
-    var icon = document.createElement('span');
-    icon.className = 'card-icon';
-    icon.textContent = link.icon;
-    top.appendChild(icon);
+    // Skip icon span when icon is empty (site-grouped cards use site labels instead)
+    if (link.icon) {
+      var iconEl = document.createElement('span');
+      iconEl.className = 'card-icon';
+      iconEl.textContent = link.icon;
+      top.appendChild(iconEl);
+    }
 
     var name = document.createElement('span');
     name.className = 'card-name';
