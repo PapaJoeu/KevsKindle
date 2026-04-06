@@ -27,6 +27,7 @@ Zero build tools. No dependencies. Pure HTML/CSS/JS + JSON data files.
 - No animations, no transitions
 - High contrast only; minimal color palette
 - Use CSS custom properties from `:root` — do not hardcode color values
+- System fonts only (Georgia serif, Courier New monospace) — no Google Fonts or external font loads. This ensures instant rendering on Kindle's slow WiFi.
 
 **Content:**
 - All user-facing copy lives in JSON files, not hardcoded in JS or HTML
