@@ -1,7 +1,7 @@
 {
   "_about": "Kev's Kindle — links.json: All link cards keyed by section. Each entry: url, icon, name, desc, optional flags array, and optional site string (for visual grouping). Edit this file to add, remove, or reorder links.",
   "read": [
-{ "url": "https://en.m.wikipedia.org", "icon": "W", "name": "Wikipedia", "desc": "Mobile encyclopedia. Fast on Kindle browser." },
+    { "url": "https://en.m.wikipedia.org", "icon": "W", "name": "Wikipedia", "desc": "Mobile encyclopedia. Fast on Kindle browser." },
     { "url": "https://www.gutenberg.org", "icon": "📖", "name": "Project Gutenberg", "desc": "70,000+ free public domain ebooks to download." },
     { "url": "https://standardebooks.org", "icon": "✦", "name": "Standard Ebooks", "desc": "Beautifully formatted open-source classics." },
     { "url": "https://old.reddit.com/r/kindle", "icon": "○", "name": "r/kindle", "desc": "Old Reddit works on Kindle. Tips, deals, hacks." }

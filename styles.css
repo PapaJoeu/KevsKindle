@@ -87,13 +87,12 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 6px 12px;
   padding: 12px 0;
   margin-bottom: 20px;
   border-bottom: 1px solid var(--border-light);
 }
 
-/* Individual nav link — small, uppercase, tappable */
+/* Individual nav link — margins instead of gap for Kindle browser compat */
 .section-nav a {
   font-size: 0.65em;
   text-decoration: none;
@@ -101,6 +100,7 @@ body {
   letter-spacing: 0.06em;
   text-transform: uppercase;
   padding: 2px 0;
+  margin: 3px 6px;
 }
 
 .section-nav a:active {

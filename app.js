@@ -1,7 +1,8 @@
 /*
  * Kev's Kindle — app.js
  * Fetches config + link data from JSON, renders the page.
- * Uses ES5 syntax throughout for Kindle browser compatibility.
+ * Avoids ES6+ syntax (no arrow functions, let/const, template literals)
+ * for Kindle browser compatibility. Relies on Promise and fetch being available.
  *
  * Sections:
  *   - Device Detection
