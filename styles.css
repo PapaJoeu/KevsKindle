@@ -270,6 +270,24 @@ body {
   margin-top: var(--space-md);
 }
 
+/* Back-to-top link — saves scrolling on e-ink after long sections */
+.back-to-top {
+  display: block;
+  text-align: right;
+  font-size: var(--text-micro);
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  text-decoration: none;
+  letter-spacing: var(--tracking-normal);
+  text-transform: uppercase;
+  padding: var(--space-sm) 0;
+  margin-top: var(--space-sm);
+}
+
+.back-to-top:active {
+  color: var(--text);
+}
+
 /* ── DIVIDER ── */
 .mode-divider {
   text-align: center;
