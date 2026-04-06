@@ -2,7 +2,7 @@
  * Kev's Kindle — styles.css
  * All presentation styles for the start page.
  * Designed for e-ink readability: high contrast, no animations,
- * minimal color, serif + monospace type pairing.
+ * minimal color, serif + monospace type pairing (system fonts only — no external loads).
  *
  * Sections:
  *   - Fonts & Reset
@@ -19,7 +19,6 @@
  */
 
 /* ── FONTS & RESET ── */
-@import url('https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,600;7..72,700&family=JetBrains+Mono:wght@400&display=swap');
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -37,8 +36,8 @@
   --radius: 3px;
 
   /* Font stacks */
-  --font-body: 'Literata', 'Georgia', serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --font-body: Georgia, 'Times New Roman', serif;
+  --font-mono: 'Courier New', Courier, monospace;
 
   /* Font sizes — named by role, not pixel value */
   --text-sm: 0.85em;         /* card names, section headers */
