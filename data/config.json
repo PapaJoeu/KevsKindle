@@ -1,21 +1,26 @@
 {
-  "_about": "Kindle Launchpad — config.json: Site metadata, section definitions, and display copy. Edit this file to change titles, labels, or section structure.",
-  "title": "Kindle Launchpad",
-  "subtitle": "Your e-ink command center",
-  "footer": "Kindle Launchpad · built for Paperwhite 11th gen",
+  "_about": "Kev's Kindle — config.json: Site metadata, section definitions, and display copy. Edit this file to change titles, labels, or section structure.",
+  "title": "Kev's Kindle",
+  "subtitle": "Because the browser is there. Might as well use it.",
   "badges": {
     "kindle": "⬤ kindle mode",
     "full": "○ full mode"
   },
   "modeDivider": "Desktop & Mobile Only",
+  "siteLabels": {
+    "kindleplay": "▦ KindlePlay",
+    "brainbashers": "◧ BrainBashers",
+    "puzzlebaron": "⌘ PuzzleBaron",
+    "ink777": "♠ ink777"
+  },
   "sections": [
-    { "key": "read",       "name": "Read",               "icon": "◆", "kindleVisible": true },
-    { "key": "play",       "name": "Play",               "icon": "◆", "kindleVisible": true },
-    { "key": "tools",      "name": "Tools",              "icon": "◆", "kindleVisible": true },
-    { "key": "send",       "name": "Send to Kindle",     "icon": "◇", "kindleVisible": false },
-    { "key": "ebooks",     "name": "Ebook Management",   "icon": "◇", "kindleVisible": false },
-    { "key": "discovery",  "name": "Book Discovery",     "icon": "◇", "kindleVisible": false },
-    { "key": "automation", "name": "Automation & RSS",    "icon": "◇", "kindleVisible": false },
-    { "key": "modding",    "name": "Modding & Community", "icon": "◇", "kindleVisible": false }
+    { "key": "read",       "name": "Read",               "icon": "◆", "kindleVisible": true,  "tagline": "words, free ones mostly" },
+    { "key": "play",       "name": "Play",               "icon": "◆", "kindleVisible": true,  "tagline": "procrastination, curated" },
+    { "key": "tools",      "name": "Tools",              "icon": "◆", "kindleVisible": true,  "tagline": "the useful stuff" },
+    { "key": "send",       "name": "Send to Kindle",     "icon": "◇", "kindleVisible": false, "tagline": "shoving things onto your device" },
+    { "key": "ebooks",     "name": "Ebook Management",   "icon": "◇", "kindleVisible": false, "tagline": "library science, sort of" },
+    { "key": "discovery",  "name": "Book Discovery",     "icon": "◇", "kindleVisible": false, "tagline": "finding the next one" },
+    { "key": "automation", "name": "Automation & RSS",    "icon": "◇", "kindleVisible": false, "tagline": "robots reading for you" },
+    { "key": "modding",    "name": "Modding & Community", "icon": "◇", "kindleVisible": false, "tagline": "warranty voiders anonymous" }
   ]
 }
