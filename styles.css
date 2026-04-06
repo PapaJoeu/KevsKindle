@@ -1,5 +1,5 @@
 /*
- * Kindle Launchpad — styles.css
+ * Kev's Kindle — styles.css
  * All presentation styles for the start page.
  * Designed for e-ink readability: high contrast, no animations,
  * minimal color, serif + monospace type pairing.
@@ -9,9 +9,11 @@
  *   - Variables
  *   - Body
  *   - Header
+ *   - Section Nav
  *   - Sections
+ *   - Taglines
  *   - Cards
- *   - Footer
+ *   - Site Labels
  *   - Divider
  *   - Loading & Error States
  */
@@ -79,6 +81,32 @@ body {
   text-transform: uppercase;
 }
 
+/* ── SECTION NAV ── */
+/* Inline navigation below header — tappable links that jump to sections */
+.section-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px 12px;
+  padding: 12px 0;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+/* Individual nav link — small, uppercase, tappable */
+.section-nav a {
+  font-size: 0.65em;
+  text-decoration: none;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 2px 0;
+}
+
+.section-nav a:active {
+  color: var(--text);
+}
+
 /* ── SECTIONS ── */
 .section {
   margin-bottom: 24px;
@@ -104,6 +132,16 @@ body {
 .section-icon {
   font-size: 1em;
   line-height: 1;
+}
+
+/* ── TAGLINES ── */
+/* Deadpan subtitle next to section name — personality without clutter */
+.section-tagline {
+  font-size: 0.7em;
+  font-weight: 400;
+  color: var(--text-muted);
+  text-transform: none;
+  letter-spacing: 0.02em;
 }
 
 /* ── CARDS ── */
@@ -173,18 +211,21 @@ body {
   font-size: 0.6em;
 }
 
-/* ── FOOTER ── */
-.footer {
-  text-align: center;
-  padding: 16px 0 8px;
-  border-top: 1px solid var(--border-light);
-  margin-top: 12px;
+/* ── SITE LABELS ── */
+/* Lightweight dividers within a section to group cards by source site */
+.site-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6em;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--text-muted);
+  padding: 4px 0 6px;
+  margin-top: 2px;
 }
 
-.footer p {
-  font-size: 0.6em;
-  color: var(--text-muted);
-  letter-spacing: 0.06em;
+/* Breathing room between site groups — only after a card grid */
+.card-grid + .site-label {
+  margin-top: 12px;
 }
 
 /* ── DIVIDER ── */
