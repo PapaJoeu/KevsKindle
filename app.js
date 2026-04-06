@@ -82,6 +82,17 @@
     document.querySelector('.header .device-badge').textContent =
       isKindle ? config.badges.kindle : config.badges.full;
 
+    // Show current time — Kindle hides the system clock in fullscreen browser
+    var clock = document.createElement('div');
+    clock.className = 'header-clock';
+    var now = new Date();
+    var hours = now.getHours();
+    var minutes = now.getMinutes();
+    var ampm = hours >= 12 ? 'pm' : 'am';
+    hours = hours % 12 || 12;
+    clock.textContent = hours + ':' + (minutes < 10 ? '0' : '') + minutes + ' ' + ampm;
+    document.querySelector('.header').appendChild(clock);
+
     var content = document.getElementById('content');
     content.innerHTML = '';
 
@@ -199,6 +210,13 @@
 
       sectionEl.appendChild(grid);
     }
+
+    // Back-to-top link — saves painful scrolling on e-ink
+    var topLink = document.createElement('a');
+    topLink.className = 'back-to-top';
+    topLink.href = '#';
+    topLink.textContent = '\u25b2 top';
+    sectionEl.appendChild(topLink);
 
     return sectionEl;
   }

@@ -107,6 +107,15 @@ body {
   text-transform: uppercase;
 }
 
+/* Clock — Kindle hides the system clock in fullscreen browser */
+.header-clock {
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  color: var(--text-muted);
+  letter-spacing: var(--tracking-normal);
+  margin-top: var(--space-xs);
+}
+
 /* ── SECTION NAV ── */
 /* Inline navigation below header — tappable links that jump to sections */
 .section-nav {
